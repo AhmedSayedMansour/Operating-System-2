@@ -47,17 +47,47 @@ public class bankerAlgorithm {
         int counter=0;
         int [] safeSequence = new int[numOfProcess];
         boolean flag;
+        System.out.println("no.p  alloc      max        need");
+        for (int i=0;i<numOfProcess;i++){
+            System.out.print("p"+i+"    ");
+            for (int j=0;j<numOfResources;j++)
+                System.out.print(processes.get(i).alloc[j]+" ");
+            System.out.print("     ");
+            for (int j=0;j<numOfResources;j++)
+                System.out.print(processes.get(i).max[j]+" ");
+             System.out.print("     ");
+            for (int j=0;j<numOfResources;j++)
+                System.out.print(processes.get(i).need[j]+" ");
+            System.out.print("     ");
+            System.out.println();
+        }
+        System.out.print("Available:  ");
+         for (int j=0;j<numOfResources;j++)            
+            System.out.print(avaliable[j]+"  ");
+        System.out.println();
+        System.out.println();
+         
         while (counter<numOfProcess){
             flag=false;
             for (int i=0;i<numOfProcess;i++){
+                System.out.println("process "+i+"  asking for resources");
                 if (processes.get(i).readyToRun(avaliable)&&(!processes.get(i).isDone)){
+                    System.out.println("process "+i+"  Approved");
+                
                     safeSequence[counter++]=i;
                     flag=true;
                     for (int j=0;j<numOfResources;j++){
                         avaliable[j]+=processes.get(i).alloc[j];
                     }
+                    System.out.print("current state available:  ");
+                    for (int j=0;j<numOfResources;j++)            
+                        System.out.print(avaliable[j]+"  ");
+                    System.out.println();
                     processes.get(i).isDone=true;
                     
+                }
+                else{
+                    System.out.println("process "+i+"  denied");
                 }
             }
             if (!flag)
@@ -71,6 +101,7 @@ public class bankerAlgorithm {
             for (int i=0;i<counter;i++){
                 System.out.println("p"+safeSequence[i]);
             }
+            System.out.println();
         }
         else{
             System.out.println("Safe system");
@@ -80,14 +111,33 @@ public class bankerAlgorithm {
             }
         }
     }
-    void RQ(int proc,int[]alloc){
-        processes.get(proc).setAlloc(alloc);
-        processes.get(proc).setNeed();
-        for (int i=0;i<numOfProcess;i++)
-            processes.get(i).isDone=false;
-        for (int j=0;j<numOfResources;j++)
-            avaliable[j]=oldstate[j];
-        isSave();   
+    
+    boolean reqLess(int arr[]){
+        for (int i=0;i<numOfResources;i++){
+            if (arr[i]>avaliable[i])
+                return false;
+        }
+        return true;
+    }
+
+    void RQ(int proc,int[]request){
+        if (!processes.get(proc).readyToRun(request)){
+            if (reqLess(request)){
+                for (int j=0;j<numOfResources;j++)
+                    avaliable[j]=oldstate[j];
+                for (int i=0;i<numOfResources;i++)
+                    processes.get(proc).alloc[i]+=request[i];
+                processes.get(proc).setNeed();
+                 for (int i=0;i<numOfProcess;i++)
+                    processes.get(i).isDone=false;
+                isSave();
+            }
+        }
+        else{
+            System.out.println("Request denied!!");
+        }
+        
+           
     }
 
 }
