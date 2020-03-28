@@ -5,7 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Directory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Disk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Disk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/File.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
