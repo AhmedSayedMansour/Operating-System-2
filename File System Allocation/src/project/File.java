@@ -2,7 +2,7 @@ package project;
 
 public class File {
     private String filePath;
-    private int[] allocatedBlocks;
+    private Block[] allocatedBlocks;
     private boolean deleted;
 
     public void createFile(String path , String name , int size)

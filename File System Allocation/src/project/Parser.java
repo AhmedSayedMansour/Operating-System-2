@@ -13,19 +13,19 @@ public class Parser {
             "DisplayDiskStructure"));
 
     boolean Parser(String command) {
-        for (int i = 0; i < command.length(); i++) {
-            // Take the cmd
-            while (true) {
-                cmd += command.charAt(i);
-                i += 1;
-                if (command.charAt(i) == ' ') break;
-            }
-            // Check if the cmd is valid
-            if (!commands.contains(cmd)) {
-                System.out.println(cmd + " is not recognized as an internal or external command");
-                return false;
-            }
+        String [] spaces = command.split(" ");
+        if (spaces[0].matches("CreateFile") && spaces.length == 3){
+            String [] paths= spaces[1].split("/");
+            size = Integer.parseInt(spaces[2]);
+
         }
-        return true;
+        else if(spaces[0].matches("DisplayDiskStatus") && spaces.length == 1){
+            return true;
+        }
+        else if(spaces[0].matches("DisplayDiskStructure") && spaces.length == 1){
+            return true;
+        }
+
+        return false;
     }
 }
