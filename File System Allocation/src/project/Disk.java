@@ -7,19 +7,22 @@ public class Disk {
     int emptySpace;
     int allocatedSpace;
     Block [] blocks;
+    int mode = 0; //1 for contiguous Allocation, 2 for indexed Allocation
 
-    public Disk(int numberOfBlocks) {
+    public Disk(int numberOfBlocks, int mode) {
         directory= new Directory("root");
         this.numberOfBlocks = numberOfBlocks;
         this.emptySpace = numberOfBlocks;
         this.allocatedSpace = 0;
+        this.mode = mode;
         blocks = new Block[numberOfBlocks];
         for(int i = 0 ; i < numberOfBlocks ;++i){
+            blocks[i] = new Block();
             blocks[i].allocated = false;
         }
     }
 
-    public void RunCommand(String command){
+    public void runCommand(String command){
         Parser parser = new Parser();
         Boolean isValid = parser.parse(command);
         if (!isValid){
@@ -27,21 +30,41 @@ public class Disk {
         }
         else {
             String []dirs = parser.path.split(" ");
-            if(!dirs[0].equals("root"))
-            {
-                System.out.println("Wrong path!");
-                return;
-            }
             if (parser.cmd.matches("CreateFile")){
-                createFile(dirs , parser.folderName, parser.fileName , parser.size , 1 , directory);
+                if(!dirs[0].equals("root"))
+                {
+                    System.out.println("Wrong path!");
+                    return;
+                }
+                if(allocateContiguous(parser.size).length != 0) {
+                    createFile(dirs, parser.folderName, parser.fileName, parser.size, 1, directory);
+                }
+                else{
+                    System.out.println("No enough space :(");
+                }
             }
             else if (parser.cmd.matches("CreateFolder")){
+                if(!dirs[0].equals("root"))
+                {
+                    System.out.println("Wrong path!");
+                    return;
+                }
                 createFolder(dirs, parser.folderName , 1 , directory);
             }
             else if (parser.cmd.matches("DeleteFile")){
+                if(!dirs[0].equals("root"))
+                {
+                    System.out.println("Wrong path!");
+                    return;
+                }
                 deleteFile(parser.path, parser.folderName, parser.fileName);
             }
             else if (parser.cmd.matches("DeleteFolder")){
+                if(!dirs[0].equals("root"))
+                {
+                    System.out.println("Wrong path!");
+                    return;
+                }
                 deleteFolder(dirs, parser.folderName , 1 , directory);
             }
             else if (parser.cmd.matches("DisplayDiskStatus")){
@@ -71,8 +94,9 @@ public class Disk {
         {
             String completePath = "";
             for(int i=0 ; i<path.length ; i++) completePath += path[i] + " ";
-            // Not completed // You can do it mans
-            current.createFile(completePath , fileName , size);
+
+            File newFile =new File(fileName, completePath , mode == 1 ? allocateContiguous(size) : allocateIndexed(size));
+            current.files.add(newFile);
         }
     }
 
@@ -107,12 +131,16 @@ public class Disk {
         }
         else if (index == path.length)
         {
+            if (checkName(current ,path[index])){
+                System.out.println("Folder already exist");
+                return;
+            }
             current.subDirectories.add(new Directory(folderName));
         }
     }
 
     public void deleteFile(String path, String folderName, String fileName) {
-
+        //TODO
     }
 
     public void deleteFolder(String[] path, String folderName , int index , Directory current) {
@@ -124,12 +152,13 @@ public class Disk {
             }
             else
             {
-                System.out.println("Wrong path!");
+                System.out.println("Wrong path :(");
                 return;
             }
         }
         else if (index == path.length)
         {
+            //TODO
             if(checkName(current , folderName))
             current.subDirectories.remove(getDirectory(current , folderName));
         }
@@ -188,22 +217,47 @@ public class Disk {
     }
 
     // Should provide => Empty space , Allocated space , Empty blocks , Allocated blocks
-    public void allocateContiguous(String name , int size)
+    public Block[] allocateContiguous(int size)
     {
-
+        int count = 0;
+        int start = -1;
+        int currentStart = 0;
+        for(int i=0; i<numberOfBlocks ;++i){
+            if(!blocks[i].allocated){
+                count++;
+            }
+            else{
+                count = 0;
+                currentStart = i +1;
+            }
+            if (size  == count){
+                start = currentStart;
+                break;
+            }
+        }
+        if(start != -1){
+            Block [] arr = new Block[size];
+            for(int i=start; i<size ;++i){
+                blocks [i].allocated = true;
+                arr[i] = blocks [i];
+            }
+            return arr;
+        }
+        else{
+            Block [] arr = new Block[0];
+            return arr;
+        }
     }
-    public void allocateLinked(String name , int start , int end)
+
+    public Block[] allocateIndexed(int size)
     {
-
+        //TODO
+        Block [] arr = new Block[0];
+        return arr;
     }
+
     public void releaseMemory(String name)
     {
-
-    }
-
-    public class Map{
-        String name;
-        int start;
-        int size;
+        //TODO
     }
 }

@@ -24,7 +24,10 @@ public class Parser {
                     fileName = paths[paths.length-1];
                     folderName = paths[paths.length-2];
                 }
-                else return false;
+                else {
+                    System.out.println("wrong extinction");
+                    return false;
+                }
                 // To check if the index is a valid integer
                 try {
                     size = Integer.parseInt(spaces[2]);
@@ -47,7 +50,10 @@ public class Parser {
                     fileName = paths[paths.length-1];
                     folderName = paths[paths.length-2];
                 }
-                else return false;
+                else {
+                    System.out.println("wrong extinction");
+                    return false;
+                }
                 for(int i=0 ; i<paths.length-1 ; i++) path = paths[i] + " ";
                 return  true;
             }

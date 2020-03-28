@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84bd5791-2bfa-4b8a-8cad-14d034afad74" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Directory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Disk.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/File.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/FileOperations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Virtual file system.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Directory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Disk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Disk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/FileOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Validate.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +46,9 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
