@@ -8,6 +8,9 @@ public class Directory {
     private ArrayList<Directory> subDirectories;
     private boolean deleted = false;
 
+    public Directory() {
+    }
+
     public Directory(String directoryPath) {
         this.directoryPath = directoryPath;
     }

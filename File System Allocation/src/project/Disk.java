@@ -21,7 +21,47 @@ public class Disk {
         }
     }
 
-    public void createFile(String path, int size) {
+    public void RunCommand(String command){
+        Parser parser = new Parser();
+        Boolean isValid = parser.parse(command);
+        if (!isValid){
+            System.out.println("ERROR :(");
+        }
+        else {
+            if (parser.cmd.matches("CreateFile")){
+                createFile(parser.path, parser.folderName, parser.fileName , parser.size);
+            }
+            else if (parser.cmd.matches("CreateFolder")){
+                createFolder(parser.path, parser.folderName);
+            }
+            else if (parser.cmd.matches("DeleteFile")){
+                deleteFile(parser.path, parser.folderName, parser.fileName);
+            }
+            else if (parser.cmd.matches("DeleteFolder")){
+                deleteFolder(parser.path, parser.folderName);
+            }
+            else if (parser.cmd.matches("DisplayDiskStatus")){
+                displayDiskStatus();
+            }
+            else if (parser.cmd.matches("DisplayDiskStructure")){
+                displayDiskStructure();
+            }
+        }
+    }
+
+    public void createFile(String path, String folderName, String fileName, int size) {
+
+    }
+
+    public void createFolder(String path, String folderName) {
+
+    }
+
+    public void deleteFile(String path, String folderName, String fileName) {
+
+    }
+
+    public void deleteFolder(String path, String folderName) {
 
     }
 
@@ -48,6 +88,10 @@ public class Disk {
         }
     }
 
+    public void displayDiskStructure(){
+
+    }
+
     // Should provide => Empty space , Allocated space , Empty blocks , Allocated blocks
     public void allocateContiguous(String name , int size)
     {
@@ -58,11 +102,6 @@ public class Disk {
 
     }
     public void releaseMemory(String name)
-    {
-
-    }
-    // Display Directories and files in tree structure
-    public void displayDiskStructure()
     {
 
     }
