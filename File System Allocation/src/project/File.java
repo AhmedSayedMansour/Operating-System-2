@@ -13,4 +13,8 @@ public class File {
         this.filePath = filePath;
         this.allocatedBlocks = allocatedBlocks;
     }
+
+    public Block[] getAllocatedBlocks() {
+        return allocatedBlocks;
+    }
 }

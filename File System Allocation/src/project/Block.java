@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class Block {
     boolean allocated;
-    private ArrayList<Block> subBlocks;
+    public ArrayList<Integer> subBlocks;
 
     public Block() {
     }
 
-    public Block(boolean allocated, ArrayList<Block> subBlocks) {
+    public Block(boolean allocated, ArrayList<Integer> subBlocks) {
         this.allocated = allocated;
         this.subBlocks = subBlocks;
     }
+
 }

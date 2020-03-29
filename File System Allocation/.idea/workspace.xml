@@ -2,22 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84bd5791-2bfa-4b8a-8cad-14d034afad74" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Directory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Disk.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/File.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/FileOperations.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Parser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Virtual file system.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Block.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Directory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Disk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Disk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/File.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/FileOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project/Validate.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +80,21 @@
       <option name="presentableId" value="Default" />
       <updated>1585341717769</updated>
     </task>
+    <task id="LOCAL-00001" summary="virtual file corrected and contiguous allocation added">
+      <created>1585435606062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585435606062</updated>
+    </task>
+    <task id="LOCAL-00002" summary="virtual file corrected and contiguous allocation added">
+      <created>1585435631815</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585435631815</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,5 +109,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="virtual file corrected and contiguous allocation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="virtual file corrected and contiguous allocation added" />
   </component>
 </project>

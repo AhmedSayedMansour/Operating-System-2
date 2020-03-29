@@ -57,11 +57,11 @@ public class Parser {
                 for(int i=0 ; i<paths.length-1 ; i++) path = paths[i] + " ";
                 return  true;
             }
-            else if((spaces[0].matches("DisplayDiskStatus")||spaces[0].matches("DisplayDiskStructure"))
+            else if((spaces[0].matches("DisplayDiskStatus")||spaces[0].matches("DisplayDiskStructure") && spaces.length == 1)
                     && spaces.length == 1){
                 return true;
             }
-            else
+            else if((spaces[0].matches("CreateFolder")||spaces[0].matches("DeleteFolder") && spaces.length == 2))
             {
                 String [] paths= spaces[1].split("/");
                 if(spaces.length == 2)
