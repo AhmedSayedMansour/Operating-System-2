@@ -1,35 +1,28 @@
 package project;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        Directory root = new Directory();
-        Directory obj = new Directory("Atef");
-        root.subDirectories.add(obj);
-        File file = new File();
-        root.files.add(file);
+        FileOperations file = new FileOperations();
+        Disk disk = file.loadFile();
+        //Disk disk = new Disk(500  , 1);
 
-        if(checkName(root , "Atef"))
-            System.out.println("Good");
 
-        Directory result = getDirectory(root , "Atef");
-        System.out.println(result.name);
-    }
-    public static boolean checkName(Directory dir, String name)
-    {
-        for(int i=0 ; i<dir.subDirectories.size() ; i++)
+        Scanner input = new Scanner(System.in);
+        String command = input.nextLine();
+        while(!command.equals("Exit"))
         {
-            if(dir.subDirectories.get(i).name == name) return true;
+            disk.runCommand(command);
+            command = input.nextLine();
         }
-        return false;
+
+        //file.saveFile(disk);
+
+
     }
-    public static Directory getDirectory(Directory dir, String name)
-    {
-        for(int i=0 ; i<dir.subDirectories.size() ; i++)
-        {
-            if(dir.subDirectories.get(i).name == name) return dir.subDirectories.get(i);
-        }
-        return null;
-    }
+
 }

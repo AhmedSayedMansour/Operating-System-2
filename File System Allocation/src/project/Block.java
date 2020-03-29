@@ -7,6 +7,7 @@ public class Block {
     public ArrayList<Integer> subBlocks;
 
     public Block() {
+        subBlocks = new ArrayList<>();
     }
 
     public Block(boolean allocated, ArrayList<Integer> subBlocks) {

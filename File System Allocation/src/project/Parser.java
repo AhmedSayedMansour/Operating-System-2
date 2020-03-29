@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Parser {
     String cmd;
-    String path, fileName, folderName;
+    String path ="" , fileName, folderName;
     int size;
     boolean checkCreate = false;
     ArrayList<String> commands = new ArrayList<String>(List.of("CreateFile", "CreateFolder", "DeleteFile",
@@ -25,7 +25,7 @@ public class Parser {
                     folderName = paths[paths.length-2];
                 }
                 else {
-                    System.out.println("wrong extinction");
+                    System.out.println("wrong extension");
                     return false;
                 }
                 // To check if the index is a valid integer
@@ -39,7 +39,9 @@ public class Parser {
                 // Check cmd to take the path if it not exist to create it
                 checkCreate = true;
                 // take the path to check it , and if it not exist create it
-                for(int i=0 ; i<paths.length-1 ; i++) path = paths[i] + " ";
+
+                for(int i=0 ; i<paths.length-1 ; i++) path += paths[i] + " ";
+
                 return true;
             }
             else if(spaces[0].equals("DeleteFile") && spaces.length == 2)
@@ -54,7 +56,8 @@ public class Parser {
                     System.out.println("wrong extinction");
                     return false;
                 }
-                for(int i=0 ; i<paths.length-1 ; i++) path = paths[i] + " ";
+                for(int i=0 ; i<paths.length-1 ; i++) path += paths[i] + " ";
+                System.out.println(path);
                 return  true;
             }
             else if((spaces[0].matches("DisplayDiskStatus")||spaces[0].matches("DisplayDiskStructure") && spaces.length == 1)
@@ -66,8 +69,8 @@ public class Parser {
                 String [] paths= spaces[1].split("/");
                 if(spaces.length == 2)
                 {
-                    for(int i=0 ; i<paths.length-1 ; i++) path = paths[i] + " ";
-                    folderName = paths[path.length()-1];
+                    for(int i=0 ; i<paths.length-1 ; i++) path += paths[i] + " ";
+                    folderName = paths[paths.length -1];
                     return true;
                 }
                 else
