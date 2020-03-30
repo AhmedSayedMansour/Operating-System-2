@@ -5,7 +5,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiskStructure.vfs" beforeDir="false" afterPath="$PROJECT_DIR$/DiskStructure.vfs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Directory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/Directory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Disk.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/Disk.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/File.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/File.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/FileOperations.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/FileOperations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/File System Allocation/project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/File System Allocation/project/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Directory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Disk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Disk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/File.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/FileOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project/Main.java" afterDir="false" />
     </list>
@@ -32,8 +41,11 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1Zj9cne9cYYlqm6wWtOfJPCP3Un" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="F:/Files/FCAI_3_1/Multimedia/Projects/vectorQuantization" />
     <property name="project.structure.last.edited" value="Project" />
@@ -111,6 +123,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="virtual file corrected and contiguous allocation added" />
     <option name="LAST_COMMIT_MESSAGE" value="virtual file corrected and contiguous allocation added" />
   </component>

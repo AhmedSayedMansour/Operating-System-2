@@ -1,8 +1,8 @@
 package project;
 
-import javax.swing.text.StyledEditorKit;
+import java.io.Serializable;
 
-public class Disk{
+public class Disk implements Serializable {
 
     public Directory directory;
     int numberOfBlocks;

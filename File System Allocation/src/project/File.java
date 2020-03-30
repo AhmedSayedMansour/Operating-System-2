@@ -1,9 +1,11 @@
 package project;
 
-public class File {
+import java.io.Serializable;
+
+public class File implements Serializable {
     public String name;
-    private String filePath;
-    private Block[] allocatedBlocks;
+    public String filePath;
+    public Block[] allocatedBlocks;
 
     public File() {
     }

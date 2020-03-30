@@ -1,8 +1,9 @@
 package project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Directory {
+public class Directory implements Serializable {
     //private String directoryPath;
     public ArrayList<File> files;
     public String name;

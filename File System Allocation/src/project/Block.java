@@ -1,8 +1,9 @@
 package project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Block {
+public class Block implements Serializable {
     boolean allocated;
     public ArrayList<Integer> subBlocks;
 
