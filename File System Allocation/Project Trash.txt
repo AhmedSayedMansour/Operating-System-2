@@ -1,0 +1,98 @@
+/*
+    public Disk loadFile() throws IOException, ClassNotFoundException {
+
+        InputStream file = new FileInputStream(path);
+        InputStream buffer = new BufferedInputStream(file);
+        ObjectInput input = new ObjectInputStream(buffer);
+
+        Directory root = new Directory();
+        //Read Directory
+        root.name = (String) input.readObject();
+        root.subDirectories = (ArrayList<Directory>)input.readObject();
+        //Read Directory -> files
+        ArrayList<File> files = new ArrayList<>();
+        int size = (int) input.readObject();
+        for(int i=0 ; i<size ; i++)
+        {
+            String fileName = (String) input.readObject();
+            String filePath = (String) input.readObject();
+            int blocksSize = (int) input.readObject();
+            Block []blocks = new Block[blocksSize];
+            for(int j=0 ; j<blocksSize ; j++)
+            {
+                blocks[j] = new Block();
+                blocks[j].allocated = (Boolean) input.readObject();
+                blocks[j].subBlocks = (ArrayList<Integer>) input.readObject();
+            }
+            File newFile = new File(fileName , filePath , blocks);
+            files.add(newFile);
+        }
+        root.files = files;
+
+        //Read Directory -> Blocks
+        int numberOfBlocks = (int) input.readObject();
+        Block []blocks = new Block[numberOfBlocks+1];
+        for(int i=0 ; i<numberOfBlocks+1 ; i++) blocks[i] = new Block();
+
+        //Read Blocks
+        for(int i=0 ; i<numberOfBlocks+1 ; i++)
+        {
+            ArrayList<Integer> subBlocks = (ArrayList<Integer>) input.readObject();
+            boolean allocated = (boolean) input.readObject();
+            blocks[i].subBlocks = subBlocks;
+            blocks[i].allocated = allocated;
+        }
+
+        int  allocatedSpace = (int) input.readObject();
+        int  emptySpace = (int) input.readObject();
+        int  mode = (int) input.readObject();
+
+        Disk result = new Disk(numberOfBlocks , mode);
+        result.blocks = blocks;
+        result.allocatedSpace = allocatedSpace;
+        result.emptySpace = emptySpace;
+        result.directory = root;
+        input.close();
+        file.close();
+        buffer.close();
+        return result;
+    }
+    public void saveFile(Disk disk) throws IOException {
+        int filesBlocksSize;
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+        ///Directory
+        objectOutputStream.writeObject(disk.directory.name);
+        objectOutputStream.writeObject(disk.directory.subDirectories);
+        //Directory -> Files
+        objectOutputStream.writeObject(disk.directory.files.size());
+        for(int i=0 ; i<disk.directory.files.size() ; i++)
+        {
+            objectOutputStream.writeObject(disk.directory.files.get(i).name);
+            objectOutputStream.writeObject(disk.directory.files.get(i).filePath);
+            filesBlocksSize = disk.directory.files.get(i).allocatedBlocks.length;
+            objectOutputStream.writeObject(filesBlocksSize);
+            for(int j=0 ; j<filesBlocksSize ; j++)
+            {
+                objectOutputStream.writeObject(disk.directory.files.get(i).allocatedBlocks[j].allocated);
+                objectOutputStream.writeObject(disk.directory.files.get(i).allocatedBlocks[j].subBlocks);
+            }
+        }
+
+        ///Blocks
+        objectOutputStream.writeObject(disk.numberOfBlocks);
+        for(int i=0 ; i<disk.numberOfBlocks+1 ; i++)
+        {
+            objectOutputStream.writeObject(disk.blocks[i].subBlocks);
+            objectOutputStream.writeObject(disk.blocks[i].allocated);
+        }
+
+        objectOutputStream.writeObject(disk.allocatedSpace);
+        objectOutputStream.writeObject(disk.emptySpace);
+        objectOutputStream.writeObject(disk.mode);
+        objectOutputStream.close();
+        fileOutputStream.close();
+    }
+
+     */
