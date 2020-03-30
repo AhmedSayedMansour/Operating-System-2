@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 public class FileOperations {
 
+    String path = "D:\\Education\\College\\third year\\Second term\\OS 2\\Operating-System-2\\File System Allocation\\DiskStructure.vfs";
     public FileOperations() {
 
     }
 
     public Disk loadFile() throws IOException, ClassNotFoundException {
 
-        InputStream file = new FileInputStream("F:\\FCAI\\OS2\\Assignments\\Operating-System-2\\File System Allocation\\DiskStructure.vfs");
+        InputStream file = new FileInputStream(path);
         InputStream buffer = new BufferedInputStream(file);
         ObjectInput input = new ObjectInputStream(buffer);
 
@@ -53,7 +54,7 @@ public class FileOperations {
     }
     public void saveFile(Disk disk) throws IOException {
 
-        FileOutputStream fileOutputStream = new FileOutputStream("F:\\FCAI\\OS2\\Assignments\\Operating-System-2\\File System Allocation\\DiskStructure.vfs");
+        FileOutputStream fileOutputStream = new FileOutputStream(path);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
         ///Directory
@@ -76,7 +77,7 @@ public class FileOperations {
         objectOutputStream.close();
     }
     public void clearFile() throws IOException {
-        FileWriter file = new FileWriter("F:\\FCAI\\OS2\\Assignments\\Operating-System-2\\File System Allocation\\DiskStructure.vfs", false);
+        FileWriter file = new FileWriter(path, false);
         PrintWriter obj = new PrintWriter(file, false);
         obj.flush();
         obj.close();

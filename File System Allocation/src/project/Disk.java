@@ -1,5 +1,7 @@
 package project;
 
+import javax.swing.text.StyledEditorKit;
+
 public class Disk{
 
     public Directory directory;
@@ -21,11 +23,12 @@ public class Disk{
         blocks[numberOfBlocks].allocated = true;
     }
 
-    public void runCommand(String command){
+    public Boolean runCommand(String command){
         Parser parser = new Parser();
         Boolean isValid = parser.parse(command);
         if (!isValid){
             System.out.println("ERROR 404:(");
+            return false;
         }
         else {
             if (parser.cmd.matches("CreateFile")){
@@ -33,14 +36,19 @@ public class Disk{
                 if(!dirs[0].equals("root"))
                 {
                     System.out.println("Wrong path!");
-                    return;
+                    return false;
+                }
+                if(fileIsExist(dirs, parser.fileName, 1, directory)){
+                    System.out.println("File already exist");
+                    return false;
                 }
                 Block []allocatedBlocks = allocateContiguous(parser.size);
-                if(allocatedBlocks.length != 0) {
-                    createFile(dirs, parser.fileName, parser.size, 1, directory , allocatedBlocks);
+                if(allocatedBlocks.length != 0 ) {
+                    return createFile(dirs, parser.fileName, parser.size, 1, directory , allocatedBlocks);
                 }
                 else{
                     System.out.println("No enough space :(");
+                    return false;
                 }
             }
             else if (parser.cmd.matches("CreateFolder")){
@@ -48,27 +56,27 @@ public class Disk{
                 if(!dirs[0].equals("root"))
                 {
                     System.out.println("Wrong path!");
-                    return;
+                    return false;
                 }
-                createFolder(dirs, parser.folderName , 1 , directory);
+                return createFolder(dirs, parser.folderName , 1 , directory);
             }
             else if (parser.cmd.matches("DeleteFile")){
                 String []dirs = parser.path.split(" ");
                 if(!dirs[0].equals("root"))
                 {
                     System.out.println("Wrong path!");
-                    return;
+                    return false;
                 }
-                deleteFile(dirs, parser.fileName , 1 , directory);
+                return deleteFile(dirs, parser.fileName , 1 , directory);
             }
             else if (parser.cmd.matches("DeleteFolder")){
                 String []dirs = parser.path.split(" ");
                 if(!dirs[0].equals("root"))
                 {
                     System.out.println("Wrong path!");
-                    return;
+                    return false;
                 }
-                deleteFolder(dirs, parser.folderName , 1 , directory);
+                return deleteFolder(dirs, parser.folderName , 1 , directory);
             }
             else if (parser.cmd.matches("DisplayDiskStatus")){
                 displayDiskStatus();
@@ -78,10 +86,10 @@ public class Disk{
                 displayDiskStructure(directory , 4 , 1);
             }
         }
-
+        return true;
     }
 
-    public void createFile(String[] path, String fileName, int size, int index, Directory current , Block[] blocks) {
+    public Boolean createFile(String[] path, String fileName, int size, int index, Directory current , Block[] blocks) {
         if(index < path.length)
         {
             if(checkName(current ,path[index]))
@@ -96,6 +104,11 @@ public class Disk{
         }
         else if (index == path.length)
         {
+            for(int i = 0 ; i<current.files.size();++i){
+                if(current.files.get(i).name.matches(fileName)){
+                    return false;
+                }
+            }
             String completePath = "";
             for(int i=0 ; i<path.length ; i++) completePath += path[i] + " ";
             File newFile;
@@ -110,6 +123,7 @@ public class Disk{
             emptySpace -= size;
             allocatedSpace += size;
         }
+        return true;
     }
 
     public boolean checkName(Directory dir, String name)
@@ -128,7 +142,7 @@ public class Disk{
         }
         return null;
     }
-    public void createFolder(String[] path, String folderName , int index , Directory current) {
+    public Boolean createFolder(String[] path, String folderName , int index , Directory current) {
         if(index < path.length)
         {
             if(checkName(current ,path[index]))
@@ -145,20 +159,21 @@ public class Disk{
         {
             if (checkName(current ,path[index-1])){
                 System.out.println("Folder already exist");
-                return;
+                return false;
             }
             current.subDirectories.add(new Directory(folderName));
         }
+        return true;
     }
 
-    public void deleteFile(String[] path, String fileName , int index , Directory current) {
+    public Boolean deleteFile(String[] path, String fileName , int index , Directory current) {
         for (int i = index; i<path.length ; ++i){
             if (checkName(current ,path[i])){
                 Directory newCurrent = getDirectory(current , path[i]);
             }
             else{
                 System.out.println("Wrong path :(");
-                return;
+                return false;
             }
         }
         if(mode == 1){
@@ -178,7 +193,7 @@ public class Disk{
             }
             if (!check){
                 System.out.println("File Not Found :(");
-                return;
+                return false;
             }
         }
         else if(mode == 2){
@@ -198,13 +213,14 @@ public class Disk{
                 }
                 else if (i == current.files.size() -1){
                     System.out.println("File Not Found :(");
-                    return;
+                    return false;
                 }
             }
         }
+        return true;
     }
 
-    public void deleteFolder(String[] path, String folderName , int index , Directory current) {
+    public Boolean deleteFolder(String[] path, String folderName , int index , Directory current) {
         Directory target;
         for (int i = index; i<path.length ; ++i){
             if (checkName(current ,path[i])){
@@ -212,7 +228,7 @@ public class Disk{
             }
             else{
                 System.out.println("Wrong path :(");
-                return;
+                return false;
             }
         }
         if(checkName(current , folderName))
@@ -222,7 +238,7 @@ public class Disk{
         else
         {
             System.out.println("Folder not found");
-            return;
+            return false;
         }
         if(mode == 1){
             for (int i = 0; i< target.files.size() ;++i){
@@ -249,6 +265,7 @@ public class Disk{
             }
             current.subDirectories.remove(target);
         }
+        return true;
     }
 
     public void displayDiskStatus(){
@@ -340,40 +357,6 @@ public class Disk{
             return result;
         }
     }
-    /*
-    public Block[] allocateContiguous(int size)
-    {
-        int count = 0;
-        int start = -1;
-        int currentStart = 0;
-        for(int i=0; i<numberOfBlocks ;++i){
-            if(!blocks[i].allocated){
-                count++;
-            }
-            else{
-                count = 0;
-                currentStart = i +1;
-            }
-            if (size  == count){
-                start = currentStart;
-                break;
-            }
-        }
-        if(start != -1){
-            Block [] arr = new Block[size];
-            count = 0;
-            for(int i=start; i<size ;++i){
-                blocks [i].allocated = true;
-                arr[count++] = blocks [i];
-            }
-            return arr;
-        }
-        else{
-            Block [] arr = new Block[0];
-            return arr;
-        }
-    }
-    */
     public Block[] allocateIndexed(int size)
     {
         int count = 0;
@@ -410,6 +393,28 @@ public class Disk{
             Block [] arr = new Block[0];
             return arr;
         }
+    }
+
+    public Boolean fileIsExist(String[] path, String fileName, int index, Directory current) {
+        if(index < path.length)
+        {
+            if(checkName(current ,path[index]))
+            {
+                fileIsExist(path, fileName, index+1 , getDirectory(current , path[index]));
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (index == path.length) {
+            for (int i = 0; i < current.files.size(); ++i) {
+                if (current.files.get(i).name.matches(fileName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
